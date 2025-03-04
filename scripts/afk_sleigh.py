@@ -12,6 +12,14 @@ import pyautogui
 import pydirectinput
 import time
 import utils_hidden as ut
+import json
+
+
+with open("scripts/locations.json", "r") as f:
+    locations = json.load(f)
+
+shop_menu_location = locations["shop"]["shopMenu"]
+
 
 ut.start_timer()
 
@@ -21,6 +29,8 @@ try:
     counter = 0
     while True:
         if counter == 30:
+            pydirectinput.moveTo(shop_menu_location[0], shop_menu_location[1])
+            pydirectinput.moveRel(None, -1)
             pydirectinput.click()
             pydirectinput.press("w")
             counter = 0

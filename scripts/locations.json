@@ -11,7 +11,8 @@
         "tradeInviteAccept": {"coordinates": [1071,454], "description": "Accept trade invitation button"},
         "tradeCarSearch": {"coordinates": [584,384], "description": "Search for cars within trade"},
         "tradeFirstCar": {"coordinates": [624,471], "description": "Location of first car when searching"},
-        "tradeAccept": {"coordinates": [624,471], "description": "Accept and confirm trade button"}
+        "tradeAccept": {"coordinates": [624,471], "description": "Accept and confirm trade button"},
+        "tradeAcceptDetect": {"coordinates": [1159,391], "description": "Detect when partner has accepted"}
     },
     "racing": {},
     "gui": {}

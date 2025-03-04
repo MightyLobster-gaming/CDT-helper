@@ -8,27 +8,29 @@ print(description, flush=True)
 import pyautogui
 import pydirectinput
 import time
+import json
 import utils_hidden as ut
 
 # define car to trade
 car = "f5"
 
 # trade_account = "MightyLobsterAlt"
-shop_menu_location = (32,436)
 
-shop_search_location = (642,370)
+with open("scripts/locations.json", "r") as f:
+    locations = json.load(f)
 
-shop_car_location = (704,580)
+shop_menu_location = locations["shop"]["shopMenu"]
+shop_search_location = locations["shop"]["shopSearch"]
+buy_button = locations["shop"]["shopRegularBuy"]
+robux_buy_button = locations["shop"]["shopRobuxBuy"]
 
-buy_button = (1130,772)
+trade_menu_location = locations["trading"]["tradeMenu"]
+trade_invite_location = locations["trading"]["tradeInviteAccept"]
+trade_search_location = locations["trading"]["tradeCarSearch"]
 
-trade_menu_location = (30,685)
-trade_invite_location = (1071,454)
-trade_search_location = (584,384)
+trade_car_location = locations["trading"]["tradeFirstCar"]
 
-trade_car_location = (624,471)
-
-trade_accept_location = (1075,314)
+trade_accept_location = locations["trading"]["tradeAccept"]
 
 def open_shop():
     # Select shop location from the side
@@ -57,23 +59,18 @@ def search_car(car):
     #     return False
     return
 
-def buy_car(exception=None):
-    if exception:
-        pydirectinput.moveTo(exception[0], exception[1])
-        pydirectinput.moveRel(None, -1)
-        pydirectinput.leftClick(duration=0.02)
-    else:
-        # Select first car
-        pydirectinput.moveTo(shop_car_location[0], shop_car_location[1])
-        pydirectinput.moveRel(None, -1)
-        pydirectinput.leftClick(duration=0.02)
+def buy_car(location):
+
+    pydirectinput.moveTo(location[0], location[1])
+    pydirectinput.moveRel(None, -1)
+    pydirectinput.leftClick(duration=0.02)
 
     time.sleep(0.05)
 
     # Check for robux
     if pyautogui.pixel(1131,717) == (24,162,0):
         # Click buy button
-        pydirectinput.moveTo(1131,717)
+        pydirectinput.moveTo(robux_buy_button[0], robux_buy_button[1])
         pydirectinput.moveRel(None, -1)
         pydirectinput.leftClick(duration=0.02)
     else:
