@@ -1,5 +1,6 @@
 import os
 import subprocess
+import sys
 import threading
 import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
@@ -23,8 +24,9 @@ def run_script(script_name):
     
     def target():
         global process
+        venv_python = sys.executable
         process = subprocess.Popen(
-            ["python", os.path.join("scripts", script_name)],
+            [venv_python, os.path.join("scripts", script_name)],
             stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, bufsize=1, universal_newlines=True
         )
         
