@@ -3,7 +3,8 @@ import subprocess
 import threading
 import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
-import importlib
+import time
+from scripts.utils_hidden import format_time
 
 global process
 process = None
@@ -43,6 +44,8 @@ def run_script(script_name):
         stderr_thread = threading.Thread(target=read_output, args=(process.stderr,))
         stdout_thread.start()
         stderr_thread.start()
+        global start_time
+        start_time = time.time()
         
         stdout_thread.join()
         stderr_thread.join()
@@ -62,7 +65,7 @@ def stop_script():
         process.terminate()
         process = None
         output_text.config(state=tk.NORMAL)
-        output_text.insert(tk.END, "\n--- Script Terminated ---\n")
+        output_text.insert(tk.END, f"\n--- Script Terminated ---\nScript ran for {format_time(time.time()-start_time)}\n")
         output_text.config(state=tk.DISABLED)
         output_text.see(tk.END)
     stop_button.config(state=tk.DISABLED)  # Disable stop button

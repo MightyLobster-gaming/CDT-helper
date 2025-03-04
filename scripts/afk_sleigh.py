@@ -1,6 +1,6 @@
 # details for script runner
 name = "AFK Sleigh"
-description = ""
+description = "Uses either Macchina Sled or Doge Sled to automate driving, gaining you miles and money whilst afk.\nStart in your car with flying mode on. Place mouse over shop icon to prevent earnings timeout"
 
 # on start
 print(name)
@@ -20,12 +20,14 @@ pydirectinput.press("w")
 try:
     counter = 0
     while True:
-        if counter == 20:
-            counter = 0
+        if counter == 30:
             pydirectinput.click()
-        counter += 1
+            pydirectinput.press("w")
+            counter = 0
+        
         pydirectinput.keyDown("w")
         pydirectinput.press("a")
-        time.sleep(1.4)
+        time.sleep(1)
+        counter += 1
 except:
     pydirectinput.keyUp("w")
