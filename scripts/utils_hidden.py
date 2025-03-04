@@ -1,4 +1,5 @@
 import time
+import json
 
 def start_timer(countdown_seconds=3):
     for n in range(countdown_seconds):
@@ -20,3 +21,8 @@ def format_time(seconds: float) -> str:
         days = seconds // 86400
         remaining_hours = (seconds % 86400) // 3600
         return f"{int(round(days))} days {int(round(remaining_hours))} hours" if remaining_hours else f"{int(round(days))} days"
+    
+def load_locations():
+    with open("scripts/locations.json", "r") as f:
+        locations = json.load(f)
+    return locations

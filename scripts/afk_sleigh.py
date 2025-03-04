@@ -12,11 +12,8 @@ import pyautogui
 import pydirectinput
 import time
 import utils_hidden as ut
-import json
 
-
-with open("scripts/locations.json", "r") as f:
-    locations = json.load(f)
+locations = ut.load_locations()
 
 shop_menu_location = locations["shop"]["shopMenu"]
 

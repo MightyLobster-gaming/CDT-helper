@@ -8,11 +8,9 @@ print(description, flush=True)
 import pyautogui
 import pydirectinput
 import time
-import json
 import utils_hidden as ut
 
-with open("scripts/locations.json", "r") as f:
-    locations = json.load(f)
+locations = ut.load_locations()
 
 trade_notif_location = locations["trading"]["tradeInviteAccept"]
 trade_accept_location = locations["trading"]["tradeAccept"]

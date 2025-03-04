@@ -8,7 +8,6 @@ print(description, flush=True)
 import pyautogui
 import pydirectinput
 import time
-import json
 import utils_hidden as ut
 
 # define car to trade
@@ -16,8 +15,7 @@ car = "f5"
 
 # trade_account = "MightyLobsterAlt"
 
-with open("scripts/locations.json", "r") as f:
-    locations = json.load(f)
+locations = ut.load_locations()
 
 shop_menu_location = locations["shop"]["shopMenu"]
 shop_search_location = locations["shop"]["shopSearch"]
