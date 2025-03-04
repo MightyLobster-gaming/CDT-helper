@@ -1,11 +1,18 @@
 {
     "shop": {
-        "shopMenuLocation": [
-            35,
-            436
-        ]
+        "shopMenu": {"coordinates": [29,458], "description": "Main shop menu"},
+        "shopCarTab": {"coordinates": [536,322], "description": "Regular car shop tab"},
+        "shopSearch": {"coordinates": [642,370], "description": "Search bar for cars"},
+        "shopRegularBuy": {"coordinates": [1130,772], "description": "Buy button when car cannot be bought with robux"},
+        "shopRobuxBuy": {"coordinates": [1131,717], "description": "Buy button when regular button is used for robux"}
     },
-    "trading": {},
+    "trading": {
+        "tradeMenu": {"coordinates": [30,685], "description": "Trade invite menu"},
+        "tradeInviteAccept": {"coordinates": [1071,454], "description": "Accept trade invitation button"},
+        "tradeCarSearch": {"coordinates": [584,384], "description": "Search for cars within trade"},
+        "tradeFirstCar": {"coordinates": [624,471], "description": "Location of first car when searching"},
+        "tradeAccept": {"coordinates": [624,471], "description": "Accept and confirm trade button"}
+    },
     "racing": {},
     "gui": {}
 }
