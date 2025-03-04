@@ -38,11 +38,26 @@ class CalibrationApp:
         self.status_label = tk.Label(root, text="")
         self.status_label.pack()
 
+        self.reset_button = tk.Button(root, text="Reset", command=self.reset_capture_mode)
+        self.reset_button.pack(pady=5)
+
         self.capture_mode = True  # Flag to toggle between modes
+        self.show_start_text()
 
         self.selected_category.trace('w', self.display_location_keys)
 
         self.root.bind('<Return>', self.on_enter)  # Bind Enter key to on_enter method
+
+    def show_start_text(self):
+        self.output_text.config(state=tk.NORMAL)
+        self.output_text.delete(1.0, tk.END)
+        self.output_text.insert(tk.END, f"Select a category above.\n")
+        self.output_text.insert(tk.END, f"Then type a key below to update.\n")
+        self.output_text.config(state=tk.DISABLED)
+
+    def reset_capture_mode(self):
+        self.capture_mode = True
+        self.show_start_text()
 
     def display_location_keys(self, *args):
         self.output_text.config(state=tk.NORMAL)
@@ -51,7 +66,7 @@ class CalibrationApp:
             locations = json.load(f)
         self.output_text.insert(tk.END, f"Keys for '{self.selected_category.get()}':\n")
         for key in locations[self.selected_category.get()].keys():
-            self.output_text.insert(tk.END, f"{key}: {locations[self.selected_category.get()][key]}\n")
+            self.output_text.insert(tk.END, f"{key}: {locations[self.selected_category.get()][key]['coordinates']}\n")
         self.output_text.config(state=tk.DISABLED)
 
     def on_enter(self, event):
@@ -66,6 +81,10 @@ class CalibrationApp:
             if key not in locations[category]:
                 self.status_label.config(text=f"'{key}' not in '{category}'")
             else:
+                self.output_text.config(state=tk.NORMAL)
+                self.output_text.delete(1.0, tk.END)
+                self.output_text.insert(tk.END, f"{key}\n{locations[self.selected_category.get()][key]['description']}\n\nPress Reset below to remove selection")
+                self.output_text.config(state=tk.DISABLED)
                 self.status_label.config(text=f"Location: '{key}'confirmed.\nPress Enter to capture mouse position.")
                 self.capture_mode = False  # Switch to capture mode
         else:
@@ -80,7 +99,7 @@ class CalibrationApp:
             except FileNotFoundError:
                 pass
 
-            data[category][key] = [x, y]
+            data[category][key]["coordinates"] = [x, y]
 
             with open('scripts/locations.json', 'w') as f:
                 json.dump(data, f, indent=4)
