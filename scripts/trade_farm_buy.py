@@ -10,6 +10,9 @@ import pydirectinput
 import time
 import utils_hidden as ut
 
+# amount of cars to buy and trade
+amount = 100
+
 # define car to trade
 car = "f5"
 
@@ -130,9 +133,9 @@ def trade(trade_account, car):
 
 ut.start_timer()
 
-for amount in range(3):
+for iteration in range(amount):
     open_shop()
     #search_car(car)
-    buy_car((712,466))
+    buy_car(locations["shop"]["shopFirstCar"]["coordinates"])
     open_trade_menu()
     trade("", car)
