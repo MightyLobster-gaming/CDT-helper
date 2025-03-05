@@ -36,10 +36,16 @@ def run_script(script_name):
                 line = pipe.readline()
                 if not line:
                     break
-                output_text.config(state=tk.NORMAL)
-                output_text.insert(tk.END, line)
-                output_text.config(state=tk.DISABLED)
-                output_text.see(tk.END)
+                elif line.startswith("Color: "):
+                    rgb_tuple = tuple(map(int, line[8:-2].split(',')))
+                    hex_color = "#{:02x}{:02x}{:02x}".format(*rgb_tuple)
+                    print(hex_color)
+                    change_color(hex_color)
+                else:
+                    output_text.config(state=tk.NORMAL)
+                    output_text.insert(tk.END, line)
+                    output_text.config(state=tk.DISABLED)
+                    output_text.see(tk.END)
             pipe.close()
         
         stdout_thread = threading.Thread(target=read_output, args=(process.stdout,))
@@ -72,6 +78,9 @@ def stop_script():
         output_text.see(tk.END)
     stop_button.config(state=tk.DISABLED)  # Disable stop button
 
+def change_color(color):
+    canvas.config(bg=color)
+
 def quit_app():
     """Stops any running script and exits the application."""
     stop_script()
@@ -81,7 +90,7 @@ def quit_app():
 # Create main window
 root = tk.Tk()
 root.title("Script Runner")
-root.geometry("350x400")
+root.geometry("350x450")
 root.attributes("-topmost", True)  # Make window always stay on top
 
 # Frame for buttons
@@ -106,6 +115,9 @@ for script in script_files:
     except (ModuleNotFoundError, AttributeError) as e:
         print(f"Failed to import {script}: {e}")
     
+# Color pad
+canvas = tk.Canvas(root, width=20, height=20, bg="white", highlightthickness=0)
+canvas.pack(pady=5)
 
 # Stop button
 stop_button = tk.Button(root, text="Stop Script", command=stop_script, state=tk.DISABLED)
