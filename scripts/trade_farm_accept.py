@@ -12,9 +12,9 @@ import utils_hidden as ut
 
 locations = ut.load_locations()
 
-trade_notif_location = locations["trading"]["tradeInviteAccept"]
-trade_accept_location = locations["trading"]["tradeAccept"]
-trade_other_accept = locations["trading"]["tradeAcceptDetect"]
+trade_notif_location = locations["trading"]["tradeInviteAccept"]["coordinates"]
+trade_accept_location = locations["trading"]["tradeAccept"]["coordinates"]
+trade_other_accept = locations["trading"]["tradeAcceptDetect"]["coordinates"]
 
 trade_notif_colour = (28, 112, 186)
 

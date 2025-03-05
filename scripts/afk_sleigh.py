@@ -15,8 +15,7 @@ import utils_hidden as ut
 
 locations = ut.load_locations()
 
-shop_menu_location = locations["shop"]["shopMenu"]
-
+shop_menu_location = locations["shop"]["shopMenu"]["coordinates"]
 
 ut.start_timer()
 
@@ -37,4 +36,5 @@ try:
         time.sleep(1)
         counter += 1
 except:
+    print("Error occurred", flush=True)
     pydirectinput.keyUp("w")

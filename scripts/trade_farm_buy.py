@@ -17,18 +17,18 @@ car = "f5"
 
 locations = ut.load_locations()
 
-shop_menu_location = locations["shop"]["shopMenu"]
-shop_search_location = locations["shop"]["shopSearch"]
-buy_button = locations["shop"]["shopRegularBuy"]
-robux_buy_button = locations["shop"]["shopRobuxBuy"]
+shop_menu_location = locations["shop"]["shopMenu"]["coordinates"]
+shop_search_location = locations["shop"]["shopSearch"]["coordinates"]
+buy_button = locations["shop"]["shopRegularBuy"]["coordinates"]
+robux_buy_button = locations["shop"]["shopRobuxBuy"]["coordinates"]
 
-trade_menu_location = locations["trading"]["tradeMenu"]
-trade_invite_location = locations["trading"]["tradeInviteAccept"]
-trade_search_location = locations["trading"]["tradeCarSearch"]
+trade_menu_location = locations["trading"]["tradeMenu"]["coordinates"]
+trade_invite_location = locations["trading"]["tradeInviteAccept"]["coordinates"]
+trade_search_location = locations["trading"]["tradeCarSearch"]["coordinates"]
 
-trade_car_location = locations["trading"]["tradeFirstCar"]
+trade_car_location = locations["trading"]["tradeFirstCar"]["coordinates"]
 
-trade_accept_location = locations["trading"]["tradeAccept"]
+trade_accept_location = locations["trading"]["tradeAccept"]["coordinates"]
 
 def open_shop():
     # Select shop location from the side
