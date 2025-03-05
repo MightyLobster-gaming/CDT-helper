@@ -102,7 +102,7 @@ def trade(trade_account, car):
     print("Trade Invite sent", flush=True)
 
     # Wait until in trade
-    while pyautogui.pixel(trade_accept_location[0], trade_accept_location[1]) != (30,162,63):
+    while ut.get_pixel_color(trade_accept_location) != (30,162,63):
         time.sleep(1)
     print("Trade Invite accepted", flush=True)
 
