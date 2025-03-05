@@ -39,7 +39,7 @@ def run_script(script_name):
                 elif line.startswith("Color: "):
                     rgb_tuple = tuple(map(int, line[8:-2].split(',')))
                     hex_color = "#{:02x}{:02x}{:02x}".format(*rgb_tuple)
-                    print(hex_color)
+                    print(f"Scanned color: {rgb_tuple}")
                     change_color(hex_color)
                 else:
                     output_text.config(state=tk.NORMAL)
