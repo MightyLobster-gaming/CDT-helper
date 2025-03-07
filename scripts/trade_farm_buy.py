@@ -130,7 +130,7 @@ def trade(trade_account, car):
     print("Trade Accepted", flush=True)
     time.sleep(7)
     
-
+print(f"Buying {amount}x of {car}")
 ut.start_timer()
 
 for iteration in range(amount):
