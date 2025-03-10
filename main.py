@@ -10,6 +10,13 @@ from scripts.utils_hidden import format_time
 global process
 process = None
 
+def change_locations():
+    venv_python = sys.executable
+    process = subprocess.Popen(
+        [venv_python, "location_calibration.py"],
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, bufsize=1, universal_newlines=True
+    )
+
 def run_script(script_name):
     """Runs the selected script in a separate thread and captures output in real time."""
     global process
@@ -90,7 +97,7 @@ def quit_app():
 # Create main window
 root = tk.Tk()
 root.title("Script Runner")
-root.geometry("350x510")
+root.geometry("350x515")
 root.attributes("-topmost", True)  # Make window always stay on top
 
 # Create a frame to hold both the canvas and the scrollbar
@@ -117,7 +124,7 @@ canvas.create_window((0, 0), window=button_frame, anchor="nw")
 # Add a bunch of buttons to the frame
 
 # Output log
-output_text = ScrolledText(root, wrap=tk.WORD, height=15, state=tk.DISABLED)
+output_text = ScrolledText(root, wrap=tk.WORD, height=13, state=tk.DISABLED)
 output_text.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
 
 # List scripts and create buttons
@@ -146,6 +153,10 @@ canvas.pack(pady=5)
 
 # Stop button
 stop_button = tk.Button(root, text="Stop Script", command=stop_script, state=tk.DISABLED)
+stop_button.pack(pady=5)
+
+# location calibration
+stop_button = tk.Button(root, text="Change Locations", command=change_locations)
 stop_button.pack(pady=5)
 
 # Quit button

@@ -42,6 +42,7 @@ class CalibrationApp:
         self.reset_button.pack(pady=5)
 
         self.capture_mode = True  # Flag to toggle between modes
+        self.record_mode = False
         self.show_start_text()
 
         self.selected_category.trace('w', self.display_location_keys)
@@ -79,7 +80,15 @@ class CalibrationApp:
                 self.status_label.config(text="Please enter a key before confirming.")
                 return
             if key not in locations[category]:
-                self.status_label.config(text=f"'{key}' not in '{category}'")
+                if self.record_mode: # add new variable
+                    self.status_label.config(text=f"'{key}' recorded.")
+                    self.status_label.config(text=f"Location: '{key}'confirmed.\nPress Enter to capture mouse position.")
+                    self.capture_mode = False
+                    self.record_mode = False
+                else:
+                    self.status_label.config(text=f"'{key}' not in '{category}'")
+                    self.status_label.config(text=f"Press enter again to record '{key}' as a new key.")
+                    self.record_mode = True
             else:
                 self.output_text.config(state=tk.NORMAL)
                 self.output_text.delete(1.0, tk.END)
@@ -87,6 +96,7 @@ class CalibrationApp:
                 self.output_text.config(state=tk.DISABLED)
                 self.status_label.config(text=f"Location: '{key}'confirmed.\nPress Enter to capture mouse position.")
                 self.capture_mode = False  # Switch to capture mode
+                self.record_mode = False
         else:
             # Capture mouse position
             x, y = pyautogui.position()
@@ -99,7 +109,10 @@ class CalibrationApp:
             except FileNotFoundError:
                 pass
 
-            data[category][key]["coordinates"] = [x, y]
+            if key in data[category]:
+                data[category][key]["coordinates"] = [x, y]
+            else:
+                data[category][key] = {"coordinates": [x, y], "description": "tbc"}
 
             with open('scripts/locations.json', 'w') as f:
                 json.dump(data, f, indent=4)
