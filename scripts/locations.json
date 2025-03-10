@@ -1,11 +1,18 @@
 {
     "shop": {
-        "shopMenu": {
+        "shopMenuInCar": {
             "coordinates": [
                 33,
                 451
             ],
-            "description": "Main shop menu"
+            "description": "Main shop menu, when in a car"
+        },
+        "shopMenuOutCar": {
+            "coordinates": [
+                37,
+                422
+            ],
+            "description": "Main shop menu, when not in a car"
         },
         "shopCarTab": {
             "coordinates": [
@@ -95,5 +102,34 @@
         }
     },
     "racing": {},
-    "gui": {}
+    "gui": {
+        "collectorEventMenuInCar": {
+            "coordinates": [
+                33,
+                580
+            ],
+            "description": "Collector event menu button, when in a car"
+        },
+        "collectorEventOpenKit": {
+            "coordinates": [
+                1155,
+                752
+            ],
+            "description": "Green open kit button when earned 100 points"
+        },
+        "collectorEventProgressbarEndCheck": {
+            "coordinates": [
+                1047,
+                735
+            ],
+            "description": "End of progressbar check to see if progress bar at 100%"
+        },
+        "collectorEventCollectReward": {
+            "coordinates": [
+                845,
+                790
+            ],
+            "description": "Button to collect reward once kit opened"
+        }
+    }
 }

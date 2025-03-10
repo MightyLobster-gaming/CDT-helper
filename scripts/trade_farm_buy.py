@@ -20,7 +20,7 @@ car = "f5"
 
 locations = ut.load_locations()
 
-shop_menu_location = locations["shop"]["shopMenu"]["coordinates"]
+shop_menu_location = locations["shop"]["shopMenuOutCar"]["coordinates"]
 shop_search_location = locations["shop"]["shopSearch"]["coordinates"]
 buy_button = locations["shop"]["shopRegularBuy"]["coordinates"]
 robux_buy_button = locations["shop"]["shopRobuxBuy"]["coordinates"]

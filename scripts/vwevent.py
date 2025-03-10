@@ -10,19 +10,23 @@ def detect_disconnect(im):
 def reconnect():
     pass
 
+locations = ut.load_locations()
+
 ut.start_timer()
 
 def open_event_menu():
-    loc = (33,580)
+    loc = locations["gui"]["collectorEventMenuInCar"]["coordinates"]
     pydirectinput.moveTo(loc[0], loc[1])
     pydirectinput.moveRel(None, -1)
     pydirectinput.leftClick(duration=0.02)
     time.sleep(0.5)
 
 def check_available_kit():
-    loc = (1155,752)
+    loc = locations["gui"]["collectorEventOpenKit"]["coordinates"]
+    progressbar = locations["gui"]["collectorEventProgressbarEndCheck"]["coordinates"]
+    collect = locations["gui"]["collectorEventCollectReward"]["coordinates"]
     screen = pyautogui.screenshot()
-    if ut.get_pixel_color(loc, screen) != (100, 100, 0) and ut.get_pixel_color((1047,735), screen) != (35,35,35):
+    if ut.get_pixel_color(loc, screen) != (100, 100, 0) and ut.get_pixel_color(progressbar, screen) != (35,35,35):
         print("Kit available", flush=True)
         pydirectinput.moveTo(loc[0], loc[1])
         pydirectinput.moveRel(None, -1)
@@ -30,13 +34,13 @@ def check_available_kit():
         time.sleep(2)
         # if pyautogui.pixel(845,790) == (255,170,0):
         print("Kit opened", flush=True)
-        pydirectinput.moveTo(845,790)
+        pydirectinput.moveTo(collect[0], collect[1])
         pydirectinput.moveRel(None, -1)
         pydirectinput.leftClick(duration=0.02)
         time.sleep(0.5)
 
 def open_shop_menu():
-    loc = (33,455)
+    loc = locations["shop"]["shopMenuInCar"]["coordinates"]
     pydirectinput.moveTo(loc[0], loc[1])
     pydirectinput.moveRel(None, -1)
     pydirectinput.leftClick(duration=0.02)

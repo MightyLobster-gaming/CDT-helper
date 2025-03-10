@@ -15,7 +15,7 @@ import utils_hidden as ut
 
 locations = ut.load_locations()
 
-shop_menu_location = locations["shop"]["shopMenu"]["coordinates"]
+shop_menu_location = locations["shop"]["shopMenuInCar"]["coordinates"]
 
 ut.start_timer()
 
