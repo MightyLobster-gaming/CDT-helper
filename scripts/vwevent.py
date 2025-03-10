@@ -13,16 +13,16 @@ def reconnect():
 ut.start_timer()
 
 def open_event_menu():
-    loc = (33,590)
+    loc = (33,580)
     pydirectinput.moveTo(loc[0], loc[1])
     pydirectinput.moveRel(None, -1)
     pydirectinput.leftClick(duration=0.02)
     time.sleep(0.5)
 
 def check_available_kit():
-    loc = (1114,709)
+    loc = (1155,752)
     screen = pyautogui.screenshot()
-    if ut.get_pixel_color(loc, screen) != (100, 100, 0) and ut.get_pixel_color((1031,699), screen) != (35,35,35):
+    if ut.get_pixel_color(loc, screen) != (100, 100, 0) and ut.get_pixel_color((1047,735), screen) != (35,35,35):
         print("Kit available", flush=True)
         pydirectinput.moveTo(loc[0], loc[1])
         pydirectinput.moveRel(None, -1)
@@ -36,12 +36,13 @@ def check_available_kit():
         time.sleep(0.5)
 
 def open_shop_menu():
-    loc = (33,467)
+    loc = (33,455)
     pydirectinput.moveTo(loc[0], loc[1])
     pydirectinput.moveRel(None, -1)
     pydirectinput.leftClick(duration=0.02)
     time.sleep(0.5)
 
+pydirectinput.press("w")
 try:
     counter = 0
     alternate = False
