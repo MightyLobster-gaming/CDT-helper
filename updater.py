@@ -32,8 +32,10 @@ def check_for_update():
     local_version = tuple(map(int, get_local_version().split(".")))
     remote_version = tuple(map(int, get_remote_version().split(".")))
 
+    
     if local_version > remote_version:
         print("Local version has unfinished changes")
+        # print(remote_version)
     elif local_version < remote_version:
         print("New version available! Updating...")
         return True
