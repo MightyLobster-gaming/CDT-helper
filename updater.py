@@ -3,7 +3,7 @@ import subprocess
 import requests
 
 # GitHub settings
-GITHUB_REPO = "https://raw.githubusercontent.com/MightyLobster-gaming/CDT-helper/main/"
+GITHUB_REPO = "https://raw.githubusercontent.com/MightyLobster-gaming/CDT-helper/refs/heads/main/"
 VERSION_FILE = "version.txt"
 
 def get_local_version():
@@ -34,7 +34,7 @@ def check_for_update():
 
     if local_version > remote_version:
         print("Local version has unfinished changes")
-    elif local_version != remote_version:
+    elif local_version < remote_version:
         print("New version available! Updating...")
         return True
     else:
