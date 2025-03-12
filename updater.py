@@ -29,17 +29,16 @@ def update_project():
     os.execv(__file__, ["python"] + os.sys.argv)
 
 def check_for_update():
-    local_version = get_local_version()
-    remote_version = get_remote_version()
+    local_version = tuple(map(int, get_local_version().split(".")))
+    remote_version = tuple(map(int, get_remote_version().split(".")))
 
-    print(f"Local version: {local_version}")
-    print(f"Remote version: {remote_version}")
-
-    if local_version != remote_version:
+    if local_version > remote_version:
+        print("Local version has unfinished changes")
+    elif local_version != remote_version:
         print("New version available! Updating...")
-        update_project()
+        return True
     else:
-        print("Already up-to-date.")
-
+        print(f"Running latest version {'.'.join(str(x) for x in local_version)}")
+    return False
 if __name__ == "__main__":
     check_for_update()

@@ -1,10 +1,19 @@
 import os
 import subprocess
+import time
+import updater
+
+# Check version and update
+needs_updating = updater.check_for_update()
+if needs_updating:
+    os.execv(sys.executable, [sys.executable] + sys.argv)
+    time.sleep(1)
+    exit()
+
 import sys
 import threading
 import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
-import time
 from scripts.utils_hidden import format_time
 
 global process
