@@ -168,8 +168,8 @@ stop_button = tk.Button(root, text="Stop Script", command=stop_script, state=tk.
 stop_button.pack(pady=5)
 
 # location calibration
-stop_button = tk.Button(root, text="Change Locations", command=change_locations)
-stop_button.pack(pady=5)
+location_calibration = tk.Button(root, text="Change Locations", command=change_locations)
+location_calibration.pack(pady=5)
 
 # Quit button
 quit_button = tk.Button(root, text="Quit", command=quit_app)
