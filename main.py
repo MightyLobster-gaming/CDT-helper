@@ -1,19 +1,7 @@
 import os
 import subprocess
 import time
-import updater
 import sys
-
-# Check version and update
-needs_updating = updater.check_for_update()
-if needs_updating:
-    result = subprocess.run(['git', 'pull'], capture_output=True, text=True)
-    if result.stdout != "Already up to date.\n":
-        time.sleep(1)
-        os.execv(sys.executable, [sys.executable] + sys.argv)
-        exit()
-
-
 import threading
 import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
