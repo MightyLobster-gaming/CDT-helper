@@ -1,7 +1,6 @@
 # details for script runner
-name = "Trade farm (buy side)"
-description = "Buys and trades a shop car with the top account in the server."
-print(name, flush=True)
+name = "Cross-trade spam (buy-side)"
+description = "Buys from stall and trades back"
 print(description, flush=True)
 
 # imports
@@ -10,13 +9,6 @@ import pydirectinput
 import time
 import utils_hidden as ut
 
-# amount of cars to buy and trade
-amount = 100
-
-# define car to trade
-car = "f5"
-
-# trade_account = "MightyLobsterAlt"
 
 locations = ut.load_locations()
 
@@ -33,54 +25,8 @@ trade_car_location = locations["trading"]["tradeFirstCar"]["coordinates"]
 
 trade_accept_location = locations["trading"]["tradeAccept"]["coordinates"]
 
-def open_shop():
-    # Select shop location from the side
-    pydirectinput.moveTo(shop_menu_location[0], shop_menu_location[1])
-    pydirectinput.moveRel(None, -1)
-    pydirectinput.leftClick(duration=0.02)
-    time.sleep(0.5)
-    # Select car tab
-    # pydirectinput.moveTo(536,322)
-    # pydirectinput.moveRel(None, -1)
-    # pydirectinput.leftClick(duration=0.02)
-
-def search_car(car):
-    # Click on search bar
-    pydirectinput.moveTo(shop_search_location[0], shop_search_location[1])
-    pydirectinput.moveRel(None, -1)
-    pydirectinput.leftClick(duration=0.02)
-    time.sleep(0.05)
-    # Type in car name
-    for character in car:
-        pydirectinput.press(character, _pause=False)
-
-    # # Check if car exists
-    # if pyautogui.pixel(579,417) == (10,253,2):
-    #     print(f"{car}: Not found in shop")
-    #     return False
-    return
-
-def buy_car(location):
-
-    pydirectinput.moveTo(location[0], location[1])
-    pydirectinput.moveRel(None, -1)
-    pydirectinput.leftClick(duration=0.02)
-
-    time.sleep(0.05)
-
-    # Check for robux
-    if pyautogui.pixel(1131,717) == (24,162,0):
-        # Click buy button
-        pydirectinput.moveTo(robux_buy_button[0], robux_buy_button[1])
-        pydirectinput.moveRel(None, -1)
-        pydirectinput.leftClick(duration=0.02)
-    else:
-        # Click buy button
-        pydirectinput.moveTo(buy_button[0], buy_button[1])
-        pydirectinput.moveRel(None, -1)
-        pydirectinput.leftClick(duration=0.02)
-    print("Car bought", flush=True)
-    time.sleep(0.5)
+def buy_from_stall():
+    pass
 
 def open_trade_menu():
     # Select trade location from the side
@@ -129,13 +75,3 @@ def trade(trade_account, car):
     pydirectinput.leftClick(duration=0.02)
     print("Trade Accepted", flush=True)
     time.sleep(7)
-    
-print(f"Buying {amount}x of {car}")
-ut.start_timer()
-
-for iteration in range(amount):
-    open_shop()
-    #search_car(car)
-    buy_car(locations["shop"]["shopFirstCar"]["coordinates"])
-    open_trade_menu()
-    trade("", car)
