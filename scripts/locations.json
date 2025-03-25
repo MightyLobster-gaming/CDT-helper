@@ -60,8 +60,8 @@
     "trading": {
         "tradeMenuInGame": {
             "coordinates": [
-                30,
-                685
+                1142,
+                26
             ],
             "description": "Trade invite menu"
         },
@@ -99,6 +99,83 @@
                 391
             ],
             "description": "Detect when partner has accepted"
+        },
+        "tradeMenuTradingServer": {
+            "coordinates": [
+                32,
+                537
+            ],
+            "description": "tbc"
+        },
+        "stallCarPos": {
+            "coordinates": [
+                614,
+                418
+            ],
+            "description": "tbc"
+        },
+        "stallBuyConfirm": {
+            "coordinates": [
+                887,
+                657
+            ],
+            "description": "tbc"
+        },
+        "stallClose": {
+            "coordinates": [
+                1335,
+                321
+            ],
+            "description": "tbc"
+        },
+        "stallConfigClose": {
+            "coordinates": [
+                1334,
+                318
+            ],
+            "description": "tbc"
+        },
+        "stallConfigInvPos": {
+            "coordinates": [
+                625,
+                466
+            ],
+            "description": "tbc"
+        },
+        "stallConfigCarPos": {
+            "coordinates": [
+                877,
+                420
+            ],
+            "description": "tbc"
+        },
+        "stallEnterTokens": {
+            "coordinates": [
+                940,
+                516
+            ],
+            "description": "tbc"
+        },
+        "stallConfirmTokens": {
+            "coordinates": [
+                905,
+                594
+            ],
+            "description": "tbc"
+        },
+        "tradeTokenBox": {
+            "coordinates": [
+                916,
+                756
+            ],
+            "description": "tbc"
+        },
+        "tradeCompleteClose": {
+            "coordinates": [
+                1178,
+                301
+            ],
+            "description": "tbc"
         }
     },
     "racing": {},
