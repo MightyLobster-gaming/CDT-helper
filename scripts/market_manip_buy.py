@@ -94,7 +94,7 @@ def trade(trade_account, car):
     pydirectinput.moveRel(None, -1)
     pydirectinput.leftClick(duration=0.02)
     time.sleep(0.05)
-    for character in car:
+    for character in car.lower():
         pydirectinput.press(character, _pause=False)
 
     # Select car
@@ -102,7 +102,7 @@ def trade(trade_account, car):
     pydirectinput.moveRel(None, -1)
     pydirectinput.leftClick(duration=0.02)
 
-    time.sleep(0.05)
+    time.sleep(2)
     # Accept trade
     pydirectinput.moveTo(trade_accept_location[0], trade_accept_location[1])
     pydirectinput.moveRel(None, -1)
@@ -112,8 +112,11 @@ def trade(trade_account, car):
     wait_for_trade_complete()
 
 def wait_for_trade_complete():
-    while ut.get_pixel_color(trade_complete_close[0], trade_complete_close[1]) != (208,0,3):
+    while ut.get_pixel_color(trade_complete_close) != (208,0,3):
         time.sleep(0.5)
+    pydirectinput.moveTo(trade_complete_close[0], trade_complete_close[1])
+    pydirectinput.moveRel(None, -1)
+    pydirectinput.leftClick(duration=0.02)
 
 def find_trade_player(target_name):
     pydirectinput.moveTo(trade_invite_location[0], trade_invite_location[1])
@@ -154,7 +157,9 @@ ut.start_timer()
 
 target_name="MightyLobsterAlt"
 
-wait_for_car()
-open_trade_menu()
-find_trade_player(target_name)
-trade(trade_account="", car="")
+for iteration in range(150):
+    print(f"Trade {iteration+1}", flush=True)
+    wait_for_car()
+    open_trade_menu()
+    find_trade_player(target_name)
+    trade(trade_account="", car="Toydo Prosus")
